@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DCU Smart Dashboard - Calendar</title>
+    <link rel="stylesheet" href="style.css">
+    <script>
+        document.querySelector('.sidebar').addEventListener('mouseenter', function() {
+            this.classList.add('expanded');
+        });
+        document.querySelector('.sidebar').addEventListener('mouseleave', function() {
+            this.classList.remove('expanded');
+        });
+    </script>
+
+</head>
+<body>
+<div class="dashboard-container">
+    <aside class="sidebar">
+        <div class="menu-item"><span class="icon"><a href="Home.html">🏠</a></span><span class="label">Home</span></div>
+        <div class="menu-item"><span class="icon"><a href="Courses.html">📚</a></span><span class="label">Courses</span></div>
+        <div class="menu-item"><span class="icon"><a href="Calendar.html">📅</a></span><span class="label">Calendar (This Page)</span></div>
+        <div class="menu-item"><span class="icon"><a href="Grades.html">📊</a></span><span class="label">Grades</span></div>
+        <div class="menu-item"><span class="icon"><a href="Settings.html">⚙️</a></span><span class="label">Settings</span></div>
+    </aside>
+		<!-- i added a link to the relevent pages for each icon. -->
+
+    <div class="main-content">
+        
+        <div class="container">
+		<p style="color:White;">Click the link to go to the Next page. <a href="Grades.html">Next Page</a></p>
+
+		<p style="color:White;">Click the link to go to the Home page. <a href="Home.html">Home Page</a></p>
+		
+		<p style="color:White;">Click the link to go to the Previous page. <a href="Courses.html">Previous Page</a></p>
+	<!-- The above is the links for the next page of the website and a link back to the Home page and the previous page. 
+	The instruction was changed to white using css to avoid confusing it with the link.-->
+</div>
+
+        <footer class="footer">© 2024 DCU Smart Dashboard. All rights reserved.</footer>
+    </div>
+</div>
+</body>
+</html>
