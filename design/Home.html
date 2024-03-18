@@ -5,26 +5,39 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DCU Smart Dashboard - Home</title>
     <link rel="stylesheet" href="style.css">
-    <script>
-        document.querySelector('.sidebar').addEventListener('mouseenter', function() {
-            this.classList.add('expanded');
-        });
-        document.querySelector('.sidebar').addEventListener('mouseleave', function() {
-            this.classList.remove('expanded');
-        });
-    </script>
+    <script src="animations.js"></script>
 
 </head>
 <body>
 <div class="dashboard-container">
     <aside class="sidebar">
-        <div class="menu-item"><span class="icon"><a href="Home.html">🏠</a></span><span class="label">Home (This Page)</span></div>
-        <div class="menu-item"><span class="icon"><a href="Courses.html">📚</a></span><span class="label">Courses</span></div>
-        <div class="menu-item"><span class="icon"><a href="Calendar.html">📅</a></span><span class="label">Calendar</span></div>
-        <div class="menu-item"><span class="icon"><a href="Grades.html">📊</a></span><span class="label">Grades</span></div>
-        <div class="menu-item"><span class="icon"><a href="Settings.html">⚙️</a></span><span class="label">Settings</span></div>
+        <div class="menu-item">
+            <a href="Home.html" class="menu-link">
+                <span class="icon">🏠</span><span class="label">Home</span>
+            </a>
+        </div>
+        <div class="menu-item">
+            <a href="Courses.html" class="menu-link">
+                <span class="icon">📚</span><span class="label">Courses</span>
+            </a>
+        </div>
+        <div class="menu-item">
+            <a href="Calendar.html" class="menu-link">
+                <span class="icon">📅</span><span class="label">Calendar</span>
+            </a>
+        </div>
+        <div class="menu-item">
+            <a href="Grades.html" class="menu-link">
+                <span class="icon">📊</span><span class="label">Grades</span>
+            </a>
+        </div>
+        <div class="menu-item">
+            <a href="Settings.html" class="menu-link">
+                <span class="icon">⚙️</span><span class="label">Settings</span>
+            </a>
+        </div>
     </aside>
-	<!-- i added a link to the relevent pages for each icon. -->
+    
     <div class="main-content">
 	
         <div class="container">

@@ -14,26 +14,44 @@ body, html {
 .sidebar {
     background-color: #333;
     padding: 20px;
-    min-width: 250px;
+    width: 50px;
+    transition: width 0.5s;
+    overflow: hidden;
+}
+
+.menu-item a {
+    display: flex;
+    align-items: center;
+    color: #ffffff;
+    text-decoration: none;
+    padding: 10px 0;
+}
+
+.menu-item:hover {
+    background-color: rgba(255, 255, 255, 0.1);
 }
 
 .menu-item {
-    display: flex;
-    align-items: center;
     margin-bottom: 10px;
     font-size: 18px;
 }
 
 .icon {
     margin-right: 10px;
+    display: inline-block;
 }
 
 .label {
     display: none;
+    margin-left: 10px;
 }
 
-.menu-item:hover .label {
-    display: block;
+.sidebar.expanded .label {
+    display: inline;
+}
+
+.sidebar.expanded {
+    width: 250px;
 }
 
 .main-content {
@@ -77,6 +95,9 @@ body, html {
 .footer {
     text-align: center;
     margin-top: 20px;
+    padding: 20px;
+    background-color: #222; 
+    color: white; 
 }
 
 @media (max-width: 768px) {
@@ -85,16 +106,15 @@ body, html {
     }
 
     .sidebar {
-        width: 60px; /* Adjusted width */
-        transition: width 0.5s; /* Animation for sidebar */
+        width: 50px;
+        transition: width 0.5s;
     }
 
     .sidebar.expanded {
-        width: 250px; /* Width when expanded */
+        width: 250px;
     }
 
     .icon {
-        display: block; /* Ensures icons are centered */
+        display: block;
     }
-
 }
