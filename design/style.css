@@ -6,6 +6,34 @@ body, html {
     color: #ffffff;
 }
 
+.floating-login-button {
+    position: fixed;
+    top: 2px;
+    right: 10px;
+    background-color: #007bff;
+    color: white;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    z-index: 1000;
+    transition: background-color 0.3s;
+}
+
+.floating-login-button:hover {
+    background-color: #0056b3;
+}
+
+.title-bar {
+    font-family: sans-serif;
+    background: linear-gradient(to right, #0062cc, #00fbff);
+    color: #ffffff;
+    padding: 10px 20px;
+    font-size: 20px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    text-align: center;
+}
+
+
 .dashboard-container {
     display: flex;
     min-height: 100vh;
@@ -87,6 +115,7 @@ body, html {
 .login-form button {
     background-color: #007bff;
     color: white;
+    margin-bottom: 10px;
     padding: 10px;
     border: none;
     cursor: pointer;
@@ -94,7 +123,7 @@ body, html {
 
 .footer {
     text-align: center;
-    margin-top: 20px;
+    margin-top: 0px;
     padding: 20px;
     background-color: #222; 
     color: white; 

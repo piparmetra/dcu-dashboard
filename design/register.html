@@ -3,10 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DCU Smart Dashboard - Login</title>
+    <title>DCU Smart Dashboard - Register</title>
     <link rel="stylesheet" href="style.css">
     <script src="animations.js"></script>
-
 </head>
 <body>
 <a href="login.html" class="floating-login-button">Login</a>
@@ -39,16 +38,18 @@
             </a>
         </div>
     </aside>
-    
+
     <div class="main-content">
-        <header class="top-bar">Login Form</header>
+        <header class="top-bar">Registration Form</header>
         <div class="login-form-container">
             <form class="login-form">
-                <h2>Enter your details below:</h2>
+                <h2>Create your account:</h2>
                 <input type="text" placeholder="Username" required>
+                <input type="email" placeholder="Email" required>
                 <input type="password" placeholder="Password" required>
-                <button type="submit">Login</button>
-                <button type="button" onclick="window.location.href='register.html';">Register</button>
+                <input type="password" placeholder="Confirm Password" required>
+                <input type="tel" placeholder="Phone Number" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" title="Format: 123-456-7890">
+                <button type="submit">Register</button>
             </form>
         </div>
     </div>
