@@ -6,6 +6,7 @@ body, html {
     color: #ffffff;
 }
 
+/* The CSS for the login button */
 .floating-login-button {
     position: fixed;
     top: 2px;
@@ -23,6 +24,7 @@ body, html {
     background-color: #0056b3;
 }
 
+/* The CSS for the title of the page */
 .title-bar {
     font-family: sans-serif;
     background: linear-gradient(to right, #0062cc, #00fbff);
@@ -39,6 +41,7 @@ body, html {
     min-height: 100vh;
 }
 
+/* This is the CSS that controls the side bar menu */
 .sidebar {
     background-color: #333;
     padding: 20px;
@@ -82,6 +85,7 @@ body, html {
     width: 250px;
 }
 
+/* This is the CSS that surrounds the main content for each page */
 .main-content {
     flex-grow: 1;
     padding: 20px;
@@ -94,6 +98,7 @@ body, html {
     margin-bottom: 20px;
 }
 
+/* This is the CSS for the Login Screen */
 .login-form-container {
     max-width: 300px;
     margin: auto;
@@ -149,7 +154,7 @@ body, html {
 }
 
 
-
+/* This is the CSS for the drop down menu */
 ul {
   list-style-type: none;
   margin: 0;
@@ -199,4 +204,86 @@ li.dropdown {
 
 .dropdown:hover .dropdown-content {
   display: block;
+}
+
+/* Below this is the CSS for the calendar*/
+* {box-sizing: border-box;}
+ul {list-style-type: none;}
+body {font-family: Verdana, sans-serif;}
+
+.month {
+  padding: 70px 25px;
+  width: 100%;
+  background: #1abc9c;
+  text-align: center;
+}
+
+.month ul {
+  margin: 0;
+  padding: 0;
+}
+
+.month ul li {
+  color: white;
+  font-size: 20px;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+}
+
+.month .prev {
+  float: left;
+  padding-top: 10px;
+}
+
+.month .next {
+  float: right;
+  padding-top: 10px;
+}
+
+.weekdays {
+  margin: 0;
+  padding: 10px 0;
+  background-color: #ddd;
+}
+
+.weekdays li {
+  display: inline-block;
+  width: 13.6%;
+  color: #666;
+  text-align: center;
+}
+
+.days {
+  padding: 10px 0;
+  background: #eee;
+  margin: 0;
+}
+
+.days li {
+  list-style-type: none;
+  display: inline-block;
+  width: 13.6%;
+  text-align: center;
+  margin-bottom: 5px;
+  font-size:12px;
+  color: #777;
+}
+
+.days li .active {
+  padding: 5px;
+  background: #1abc9c;
+  color: white !important
+}
+
+
+.button {
+  border: none;
+  color: blue;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
 }
