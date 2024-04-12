@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RoomSense - Grades</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="animations.js"></script>
+     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script> <!-- Including Plotly.js -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            fetch('/getRoom', {
+                method: 'GET'
+            })
+            .then(response => response.json())
+            .then(rooms => {
+                const sidebar = document.querySelector('.sidebar-dynamic');
+                rooms.forEach(room => {
+                    const roomButton = document.createElement('button');
+                    roomButton.textContent = `Room ${room.room_id}`;
+                    roomButton.onclick = () => displayRoomInfo(room);
+                    sidebar.appendChild(roomButton);
+                });
+            });
+
+            function displayRoomInfo(room) {
+                const data = [
+                    {
+                        x: ['Temperature', 'Humidity', 'Occupancy', 'Size'],
+                        y: [room.temp, room.humidity, room.occupancy, room.size],
+                        type: 'bar'
+                    }
+                ];
+
+                const layout = {
+                    title: `Room ${room.room_id} Information`
+                };
+
+                Plotly.newPlot('room-info', data, layout);
+
+                // Optional: Display text information as well
+                const infoContainer = document.querySelector('.room-info');
+                infoContainer.innerHTML += `
+                    <p>Username: ${room.username}</p>
+                    <p>Temperature: ${room.temp}°C</p>
+                    <p>Humidity: ${room.humidity}%</p>
+                    <p>Occupancy: ${room.occupancy}</p>
+                    <p>Size: ${room.size} sqm</p>
+                `;
+            }
+        });
+    </script> <script src="https://cdn.plot.ly/plotly-latest.min.js"></script> <!-- Including Plotly.js -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            fetch('/getRoom', {
+                method: 'GET'
+            })
+            .then(response => response.json())
+            .then(rooms => {
+                const sidebar = document.querySelector('.sidebar-dynamic');
+                rooms.forEach(room => {
+                    const roomButton = document.createElement('button');
+                    roomButton.textContent = `Room ${room.room_id}`;
+                    roomButton.onclick = () => displayRoomInfo(room);
+                    sidebar.appendChild(roomButton);
+                });
+            });
+
+            function displayRoomInfo(room) {
+                const data = [
+                    {
+                        x: ['Temperature', 'Humidity', 'Occupancy', 'Size'],
+                        y: [room.temp, room.humidity, room.occupancy, room.size],
+                        type: 'bar'
+                    }
+                ];
+
+                const layout = {
+                    title: `Room ${room.room_id} Information`
+                };
+
+                Plotly.newPlot('room-info', data, layout);
+
+                // Optional: Display text information as well
+                const infoContainer = document.querySelector('.room-info');
+                infoContainer.innerHTML += `
+                    <p>Username: ${room.username}</p>
+                    <p>Temperature: ${room.temp}°C</p>
+                    <p>Humidity: ${room.humidity}%</p>
+                    <p>Occupancy: ${room.occupancy}</p>
+                    <p>Size: ${room.size} sqm</p>
+                `;
+            }
+        });
+    </script>
+</head>
+<body>
+<a href="login.html" class="floating-login-button">Login</a>
+<div class="title-bar">DCU Dashboard</div>
+<div class="dashboard-container">
+    <aside class="sidebar">
+        <div class="menu-item">
+            <a href="home.html" class="menu-link">
+                <span class="icon">🏠</span><span class="label">Home</span>
+            </a>
+        </div>
+        <div class="menu-item">
+            <a href="courses.html" class="menu-link">
+                <span class="icon">📚</span><span class="label">Courses</span>
+            </a>
+        </div>
+        <div class="menu-item">
+            <a href="calendar.html" class="menu-link">
+                <span class="icon">📅</span><span class="label">Calendar</span>
+            </a>
+        </div>
+        <div class="menu-item">
+            <a href="rooms.html" class="menu-link">
+                <span class="icon">📊</span><span class="label">Rooms (Here)</span>
+            </a>
+        </div>
+        <div class="menu-item">
+            <a href="settings.html" class="menu-link">
+                <span class="icon">⚙️</span><span class="label">Settings</span>
+            </a>
+        </div>
+		
+		<div class="menu-item">
+			<li class="dropdown">
+			<a href="javascript:void(0)" <span class="icon">⚙️</span><span class="label">   </span><span class="label"> Dynamic</span></a>
+			<div class="dropdown-content">
+			<a href="unused/Dynamic1.html">Dynamic Page 1</a>
+			<a href="unused/Dynamic2.html">Dynamic Page 2</a>
+			<a href="unused/Dynamic3.html">Dynamic Page 3</a>
+			<a href="unused/Dynamic4.html">Dynamic Page 4</a>
+			<a href="unused/Dynamic5.html">Dynamic Page 5</a>
+			</div>
+			</li>
+
+		</div>
+    </aside>
+    <!-- Dynamic sidebar for rooms. It gets populated with room buttons through the script. -->
+    <aside class="sidebar-dynamic">
+        <!-- Placeholder where dynamic content (room buttons) will be added -->
+    </aside>
+    <!-- Main content area where room details will be displayed upon selecting a room -->
+    <div class="main-content">
+        <div class="room-info">
+            <!-- Room information will be dynamically displayed here -->
+        </div>
+    </div>
+</div>
+<footer class="footer">
+    <p>© 2024 DCU Smart Dashboard. All rights reserved.</p>
+    <p>Privacy Policy | Terms of Use | Accessibility</p>
+    <p>Contact Us: <a href="mailto:support@dcusmartdashboard.com">support@dcusmartdashboard.com</a></p>
+</footer>
+</body>
+</html>

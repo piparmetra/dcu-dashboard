@@ -1,29 +1,157 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Rooms</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RoomSense - Rooms</title>
+    <link rel="stylesheet" href="css/style.css">
+     <style>
+        .sidebar-dynamic {
+            background-color: #333;
+            padding: 10px;
+            width: 200px;
+            height: 100%;
+            overflow-y: auto;
+             flex-direction: column;
+        }
+
+        .sidebar-dynamic .menu-item {
+            display: block;
+        }
+
+        .sidebar-dynamic .menu-link {
+            display: block;
+            padding: 8px;
+            color: white;
+            text-decoration: none;
+        }
+
+        .sidebar-dynamic .menu-link:hover {
+            background-color: #555;
+        }
+    </style>
+    <script src="js/animations.js"></script>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            document.querySelectorAll('.menu-link').forEach(item => {
+                item.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const room = {
+                        room_id: this.dataset.roomId,
+                        room_name: this.textContent,
+                        temp: parseFloat(this.dataset.temp),
+                        humidity: parseFloat(this.dataset.humidity),
+                        occupancy: parseFloat(this.dataset.occupancy),
+                        size: parseFloat(this.dataset.size)
+                    };
+                    displayRoomInfo(room);
+                });
+            });
+        });
+
+        function displayRoomInfo(room) {
+            const gaugeLayout = {
+                width: 300, height: 300,
+                margin: { t: 25, b: 25, l: 25, r: 25 },
+                paper_bgcolor: "rgba(0,0,0,0.5)",
+                font: { color: "white" }
+            };
+
+            Plotly.newPlot('tempGauge', [{
+                domain: { x: [0, 1], y: [0, 1] },
+                value: room.temp,
+                title: { text: "Temperature (°C)" },
+                type: "indicator",
+                mode: "gauge+number",
+                gauge: { axis: { range: [null, 50] }, bar: { color: "red" } }
+            }], gaugeLayout);
+
+            Plotly.newPlot('humidityGauge', [{
+                domain: { x: [0, 1], y: [0, 1] },
+                value: room.humidity,
+                title: { text: "Humidity (%)" },
+                type: "indicator",
+                mode: "gauge+number",
+                gauge: { axis: { range: [null, 100] }, bar: { color: "blue" } }
+            }], gaugeLayout);
+
+            Plotly.newPlot('occupancyGauge', [{
+                domain: { x: [0, 1], y: [0, 1] },
+                value: room.occupancy,
+                title: { text: "Occupancy" },
+                type: "indicator",
+                mode: "gauge+number",
+                gauge: { axis: { range: [null, 50] }, bar: { color: "green" } }
+            }], gaugeLayout);
+
+            Plotly.newPlot('sizeGauge', [{
+                domain: { x: [0, 1], y: [0, 1] },
+                value: room.size,
+                title: { text: "Size (sqm)" },
+                type: "indicator",
+                mode: "gauge+number",
+                gauge: { axis: { range: [null, 200] }, bar: { color: "yellow" } }
+            }], gaugeLayout);
+        }
+    </script>
+    
+    
+    
 </head>
 <body>
-    <h1>Rooms</h1>
-    <table>
-        <thead>
-            <tr>
-                <th>Name</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr th:each="room : ${rooms}">
-                <td th:text="${room.room_name}"></td>
-                <td>
-                    <a th:href="@{'/rooms/' + ${room.room_id}}">View</a>
-                    <!--<a th:href="@{'/room/edit/' + ${room.room_id}}">Edit</a>
-                    <a th:href="@{'/room/delete/' + ${room.room_id}}">Delete</a>
-                    -->
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <!--<a href="/admin/rooms">Access rooms as Admin</a>-->
+    <a href="login.html" class="floating-login-button">Login</a>
+    <div class="title-bar">RoomSense</div>
+    <div class="dashboard-container">
+        <aside class="sidebar">
+        <div class="menu-item">
+            <a href="home.html" class="menu-link">
+                <span class="icon">🏠</span><span class="label">Home (Here)</span>
+            </a>
+        </div>
+        <div class="menu-item">
+            <a href="courses.html" class="menu-link">
+                <span class="icon">📚</span><span class="label">Courses</span>
+            </a>
+        </div>
+        <div class="menu-item">
+            <a href="calendar.html" class="menu-link">
+                <span class="icon">📅</span><span class="label">Calendar</span>
+            </a>
+        </div>
+        <div class="menu-item">
+            <a href="/rooms" class="menu-link">
+                <span class="icon">📊</span><span class="label">Rooms</span>
+            </a>
+        </div>
+        <div class="menu-item">
+            <a href="settings.html" class="menu-link">
+                <span class="icon">⚙️</span><span class="label">Settings</span>
+            </a>
+        </div>
+		
+    </aside>
+        <aside class="sidebar-dynamic">
+        <th:block th:each="room : ${rooms}">
+            <div class="menu-item">
+                <a href="#" class="menu-link" th:text="${room.room_name}"
+                   th:data-room-id="${room.room_id}" th:data-temp="${room.temp}"
+                   th:data-humidity="${room.humidity}" th:data-occupancy="${room.occupancy}"
+                   th:data-size="${room.size}" onclick="displayRoomInfo(this.dataset)">Room Name</a>
+            </div>
+        </th:block>
+    </aside>
+        <div class="main-content">
+            <div id="tempGauge" style="width:300px; height:300px; display: inline-block;"></div>
+            <div id="humidityGauge" style="width:300px; height:300px; display: inline-block;"></div>
+            <div id="occupancyGauge" style="width:300px; height:300px; display: inline-block;"></div>
+            <div id="sizeGauge" style="width:300px; height:300px; display: inline-block;"></div>
+        </div>
+    </div>
+    <footer class="footer">
+        <p>© 2024 DCU Smart Dashboard. All rights reserved.</p>
+        <p>Privacy Policy | Terms of Use | Accessibility</p>
+        <p>Contact Us: <a href="mailto:support@dcusmartdashboard.com">support@dcusmartdashboard.com</a></p>
+    </footer>
 </body>
 </html>
