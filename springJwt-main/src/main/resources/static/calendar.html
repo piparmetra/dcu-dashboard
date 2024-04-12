@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RoomSense- Calendar</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <script src="/js/animations.js"></script>
+	<style>
+		/* Moved to in-page styling for calendar - patriks */
+		* {box-sizing: border-box;}
+		ul {list-style-type: none;}
+		body {font-family: Verdana, sans-serif;}
+
+		.month {
+			padding: 50px 25px;
+			width: 100%;
+			background: #1abc9c;
+			text-align: center;
+		}
+
+		.month ul {
+			margin: 0;
+			padding: 0;
+			position: relative;
+		}
+
+		.month ul li {
+			color: white;
+			font-size: 24px;
+			text-transform: uppercase;
+			letter-spacing: 2px;
+		}
+
+		.month .prev, .month .next {
+			cursor: pointer;
+			position: absolute;
+			top: 50%;
+			transform: translateY(-50%);
+			padding: 10px;
+		}
+
+		.month .prev {left: 15px;}
+		.month .next {right: 15px;}
+
+		.weekdays {
+			margin: 0;
+			padding: 10px 0;
+			background-color: #ddd;
+			color: #666;
+			text-align: center;
+		}
+
+		.weekdays li {
+			display: inline-block;
+			width: 13.6%;
+			padding: 12px 0;
+		}
+
+		.days {
+			padding: 10px 0;
+			background: #eee;
+			margin: 0;
+			text-align: center;
+		}
+
+		.days li {
+			list-style-type: none;
+			display: inline-block;
+			width: 13.6%;
+			margin-bottom: 5px;
+			font-size:16px;
+			color: #777;
+			height: 60px;
+			line-height: 50px;
+			border-radius: 8px;
+			background-color: #333;
+			padding: 5px 0;
+		}
+
+		.days li:hover {
+			background-color: #444;
+			color: #ddd;
+		}
+
+		.days li .active {
+			background: #1abc9c;
+			color: white !important;
+			border-radius: 3px;
+		}
+	</style>
+
+
+</head>
+<body>
+<a href="/connect/login.html" class="floating-login-button">Login</a>
+<div class="title-bar">RoomSense</div>
+<div class="dashboard-container">
+    <aside class="sidebar">
+        <div class="menu-item">
+            <a href="home.html" class="menu-link">
+                <span class="icon">🏠</span><span class="label">Home</span>
+            </a>
+        </div>
+        <div class="menu-item">
+            <a href="courses.html" class="menu-link">
+                <span class="icon">📚</span><span class="label">Courses</span>
+            </a>
+        </div>
+        <div class="menu-item">
+            <a href="calendar.html" class="menu-link">
+                <span class="icon">📅</span><span class="label">Calendar (Here)</span>
+            </a>
+        </div>
+        <div class="menu-item">
+            <a href="rooms.html" class="menu-link">
+                <span class="icon">📊</span><span class="label">Rooms</span>
+            </a>
+        </div>
+        <div class="menu-item">
+            <a href="settings.html" class="menu-link">
+                <span class="icon">⚙️</span><span class="label">Settings</span>
+            </a>
+        </div>
+		
+		<div class="menu-item">
+			<li class="dropdown">
+			<a href="javascript:void(0)" <span> class="icon">⚙️</span><span class="label">   </span><span class="label"> Dynamic</span></a>
+			<div class="dropdown-content">
+			<a href="unused/Dynamic1.html">Dynamic Page 1</a>
+			<a href="unused/Dynamic2.html">Dynamic Page 2</a>
+			<a href="unused/Dynamic3.html">Dynamic Page 3</a>
+			<a href="unused/Dynamic4.html">Dynamic Page 4</a>
+			<a href="unused/Dynamic5.html">Dynamic Page 5</a>
+			</div>
+			</li>
+
+		</div>
+		
+    </aside>
+
+<div class="main-content">
+	<h1>DCU Calendar</h1>
+
+	<div class="month">      
+	<ul>
+<!--		<li class="prev">&#10094;</li>-->
+<!--		<li class="next">&#10095;</li>-->
+		<li>
+		 April<br>
+		<span style="font-size:18px">2024</span>
+		</li>
+	</ul>
+	</div>
+
+	<ul class="weekdays">
+	<li>Mo</li>
+	<li>Tu</li>
+	<li>We</li>
+	<li>Th</li>
+	<li>Fr</li>
+	<li>Sa</li>
+	<li>Su</li>
+	</ul>
+
+	<ul class="days">  
+		<li>1</li>
+		<li>2</li>
+		<li>3</li>
+		<li>4</li>
+		<li>5</li>
+		<li>6</li>
+		<li>7</li>
+		<li>8</li>
+		<li>9</li>
+		<li>10</li>
+		<li>11</li>
+		<li>12</li>
+		<li><span class="active">13</span></li>
+		<li>14</li>
+		<li>15</li>
+		<li>16</li>
+		<li>17</li>
+		<li>18</li>
+		<li>19</li>
+		<li>20</li>
+		<li>21</li>
+		<li>22</li>
+		<li>23</li>
+		<li>24</li>
+		<li>25</li>
+		<li>26</li>
+		<li>27</li>
+		<li>28</li>
+		<li>29</li>
+		<li>30</li>
+		<li>31</li>
+	</ul>
+</div>
+	
+</div>
+
+<div class="main-content">
+        
+        <div class="container">
+		<br><br>
+		<p style="color:White;">Click the link to go to the Next page. <a href="rooms.html">Next Page</a></p>
+
+		<p style="color:White;">Click the link to go to the Home page. <a href="home.html">Home Page</a></p>
+		
+		<p style="color:White;">Click the link to go to the Previous page. <a href="courses.html">Previous Page</a></p>
+	<!-- The above is the links for the next page of the website and a link back to the Home page and the previous page. 
+	The instruction was changed to white using css to avoid confusing it with the link.-->
+</div>
+
+    </div>
+
+<footer class="footer">
+    <p>© 2024 DCU Smart Dashboard. All rights reserved.</p>
+    <p>Privacy Policy | Terms of Use | Accessibility</p>
+    <p>Contact Us: <a href="mailto:support@dcusmartdashboard.com">support@dcusmartdashboard.com</a></p>
+</footer>
+</body>
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Rooms</title>
+</head>
+<body>
+    <h1>Rooms</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="room : ${rooms}">
+                <td th:text="${room.room_name}"></td>
+                <td>
+                    <a th:href="@{'/rooms/' + ${room.room_id}}">View</a>
+                    <!--<a th:href="@{'/room/edit/' + ${room.room_id}}">Edit</a>
+                    <a th:href="@{'/room/delete/' + ${room.room_id}}">Delete</a>
+                    -->
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <!--<a href="/admin/rooms">Access rooms as Admin</a>-->
+</body>
+</html>

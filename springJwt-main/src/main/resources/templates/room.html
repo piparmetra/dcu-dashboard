@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Room Details</title>
+</head>
+<body>
+    <h1>Room Details</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Size</th>
+                <th>Temperature</th>
+                <th>Humidity</th>
+                <th>Occupancy</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td th:text="${room.room_id}"></td>
+                <td th:text="${room.room_name}"></td>
+                <td th:text="${room.size}"></td>
+                <td th:text="${room.temp}"></td>
+                <td th:text="${room.humidity}"></td>
+                <td th:text="${room.occupancy}"></td>
+            </tr>
+        </tbody>
+    </table>
+    <a th:href="@{'/rooms'}">Back to Rooms</a>
+</body>
+</html>
