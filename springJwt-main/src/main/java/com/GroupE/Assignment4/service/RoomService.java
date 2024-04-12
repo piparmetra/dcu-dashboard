@@ -17,4 +17,6 @@ public interface RoomService {
 	
 	void deleteRoom(int room_id);
 
+	RoomDto editRoom(RoomDto roomDto);
+
 }

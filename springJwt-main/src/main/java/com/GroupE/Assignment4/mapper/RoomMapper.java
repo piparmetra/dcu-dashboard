@@ -15,6 +15,7 @@ public class RoomMapper {
 		room.setTemp(roomDto.getTemp());
 		room.setOccupancy(roomDto.getOccupancy());
 		room.setSize(roomDto.getSize());
+		room.setRoom_name(roomDto.getRoom_name());
 		
 		return room;
 

@@ -54,6 +54,11 @@ public class RoomServiceImpl implements RoomService{
 		roomRepository.delete(room);
 	}
 	
-	
+	@Override
+	public RoomDto editRoom(RoomDto roomDto) {
+		Room room = RoomMapper.mapToRoom(roomDto);
+		Room savedRoom = roomRepository.save(room);
+		return RoomMapper.mapToRoomDto(savedRoom);
+	}
 
 }
