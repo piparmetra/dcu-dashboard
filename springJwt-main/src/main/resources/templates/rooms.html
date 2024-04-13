@@ -22,21 +22,21 @@
             display: block;
         }
 
-        .sidebar-dynamic .menu-link {
+        .sidebar-dynamic .menu-link-room {
             display: block;
             padding: 8px;
             color: white;
             text-decoration: none;
         }
 
-        .sidebar-dynamic .menu-link:hover {
+        .sidebar-dynamic .menu-link-room:hover {
             background-color: #555;
         }
     </style>
     
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            document.querySelectorAll('.menu-link').forEach(item => {
+            document.querySelectorAll('.menu-link-room').forEach(item => {
                 item.addEventListener('click', function(e) {
                     e.preventDefault();
                     const room = {
@@ -107,17 +107,17 @@
     <div class="dashboard-container">
     <aside class="sidebar">
 	         <div class="menu-item">
-	        <a href="../home.html" class="menu-link">
+	        <a href="/home.html" class="menu-link">
 	            <span class="icon">🏠</span><span class="label">Home (Here)</span>
 	        </a>
 	    </div>
 	    <div class="menu-item">
-	        <a href="..courses.html" class="menu-link">
+	        <a href="/courses.html" class="menu-link">
 	            <span class="icon">📚</span><span class="label">Courses</span>
 	        </a>
 	    </div>
 	    <div class="menu-item">
-	        <a href="../calendar.html" class="menu-link">
+	        <a href="/calendar.html" class="menu-link">
 	            <span class="icon">📅</span><span class="label">Calendar</span>
 	        </a>
 	    </div>
@@ -139,7 +139,7 @@
         <aside class="sidebar-dynamic">
         <th:block th:each="room : ${rooms}">
             <div class="menu-item">
-                <a href="#" class="menu-link" th:text="${room.room_name}"
+                <a href="#" class="menu-link-room" th:text="${room.room_name}"
                    th:data-room-id="${room.room_id}" th:data-temp="${room.temp}"
                    th:data-humidity="${room.humidity}" th:data-occupancy="${room.occupancy}"
                    th:data-size="${room.size}" onclick="displayRoomInfo(this.dataset)">Room Name</a>
