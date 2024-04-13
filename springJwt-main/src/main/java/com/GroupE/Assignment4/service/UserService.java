@@ -14,9 +14,15 @@ public interface UserService {
 	
 	UserDto FindUserDetails(String username);
 
+	UserDto getUserById(Integer id);
+
+
 	String deletUser(String username);
+	String deleteUser(Integer id);
 	
 	UserDto changePassword(String username, String password);
 	
 	UserDto DisableUser(String username);
+
+	UserDto updateUser(Integer id, UserDto userDto);
 }

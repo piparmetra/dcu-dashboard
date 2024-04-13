@@ -74,10 +74,25 @@ public class UserServiceImpl implements UserService {
 		
 		tokenRepository.deleteById(user.getId());;
 		
-		//userRepository.deleteById(user.getId());
+		userRepository.deleteById(user.getId());
 		
 		return "User -> "+ username +" is deleted";
 	}
+
+
+	@Override
+	@Transactional
+	public String deleteUser(Integer id) {
+		User user = userRepository.findById(id).orElseThrow(() -> new RuntimeException("User not found"));
+		List<Token> tokens = tokenRepository.findAllTokensByUser(user.getId());
+		for (Token token : tokens) {
+			tokenRepository.delete(token);
+		}
+		tokenRepository.deleteById(user.getId());
+		userRepository.deleteById(user.getId());
+		return "User -> " + user.getUsername() + " is deleted";
+	}
+
 
 
 	@Override
@@ -107,7 +122,21 @@ public class UserServiceImpl implements UserService {
 		return UserMapper.mapToUserDto(savedUser);
 	}
 	
-	
-	
 
+	@Override
+	public UserDto getUserById(Integer id) {
+		User user = userRepository.findById(id).orElseThrow(()-> new RuntimeException("User not found"));
+		return UserMapper.mapToUserDto(user);
+	}
+
+	@Override
+	public UserDto updateUser(Integer id, UserDto userDto) {
+		User user = userRepository.findById(id).orElseThrow(()-> new RuntimeException("User not found"));
+		user.setFirstName(userDto.getFirstName());
+		user.setLastName(userDto.getLastName());
+		user.setEmail(userDto.getEmail());
+		user.setRole(userDto.getRole());
+		User savedUser = userRepository.save(user);
+		return UserMapper.mapToUserDto(savedUser);
+	}
 }
