@@ -1,11 +1,49 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>User Management</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RoomSense - User Settings</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <script src="../js/animations.js"></script>
+    <script src="../js/authentication.js"></script>
+
 </head>
 <body>
+<a href="/connect/login.html" class="floating-login-button">Login</a>
+<div class="title-bar">RoomSense</div>
+<div class="dashboard-container">
+     <aside class="sidebar">
+	         <div class="menu-item">
+	        <a href="../static/home.html" class="menu-link">
+	            <span class="icon">🏠</span><span class="label">Home (Here)</span>
+	        </a>
+	    </div>
+	    <div class="menu-item">
+	        <a href="../courses.html" class="menu-link">
+	            <span class="icon">📚</span><span class="label">Courses</span>
+	        </a>
+	    </div>
+	    <div class="menu-item">
+	        <a href="../calendar.html" class="menu-link">
+	            <span class="icon">📅</span><span class="label">Calendar</span>
+	        </a>
+	    </div>
+        <div class="menu-item">
+            <a href="/rooms" class="menu-link">
+                <span class="icon">📊</span><span class="label">Rooms</span>
+            </a>
+        </div>
+        <div class="menu-item">
+   			<a href="#" class="menu-link" onclick="goToUsersPage()">
+        		<span class="icon">⚙️</span><span class="label">Settings</span>
+   		    </a>
+		</div>
+		
+    </aside>
 
-<h1>User Management</h1>
+    <div class="main-content">
+        <h1>User Management</h1>
 
 <table border="1">
     <thead>
@@ -46,6 +84,14 @@
     </tbody>
     
 </table>
+    </div>
 
+
+</div>
+<footer class="footer">
+    <p>© 2024 DCU Smart Dashboard. All rights reserved.</p>
+    <p>Privacy Policy | Terms of Use | Accessibility</p>
+    <p>Contact Us: <a href="mailto:support@dcusmartdashboard.com">support@dcusmartdashboard.com</a></p>
+</footer>
 </body>
 </html>
