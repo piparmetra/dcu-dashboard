@@ -62,10 +62,13 @@
         document.addEventListener('DOMContentLoaded', function() {
         	 const token = localStorage.getItem('jwtToken');
              const addRoomBtn = document.getElementById('addRoomBtn');
+             const editRoomBtns = document.querySelectorAll('.menu-item .edit-button');
              if (token) {
-                 addRoomBtn.style.display = 'block';
+                addRoomBtn.style.display = 'block';
+                editRoomBtns.forEach(btn => btn.style.display = 'inline-block');
              } else {
-                 addRoomBtn.style.display = 'none';
+                addRoomBtn.style.display = 'none';
+                editRoomBtns.forEach(btn => btn.style.display = 'none');
              }
         	
         	
