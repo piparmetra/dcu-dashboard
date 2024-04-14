@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RoomSense - Add Room</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="/js/animations.js"></script>
+    <script src="/js/authentication.js"></script>
+    <style>
+		.form-container {
+		    background: #2c2c2c; /* dark grey background */
+		    color: #ffffff; /* white text color for readability */
+		    padding: 20px;
+		    border-radius: 8px;
+		    box-shadow: 0 4px 8px rgba(0,0,0,0.2); /* slightly stronger shadow for dark mode */
+		    width: 60%; /* wider form */
+		    margin: 20px auto;
+		}
+		
+		.form-container h1 {
+		    color: #ffffff; /* white text for headings */
+		}
+		
+		.form-container label {
+		    display: block;
+		    margin: 10px 0 5px;
+		    color: #cccccc; /* Llight grey color for labels */
+		}
+		
+		.form-container input[type="number"],
+		.form-container input[type="text"] {
+		    width: calc(100% - 22px);
+		    padding: 10px;
+		    margin-bottom: 10px;
+		    border: 1px solid #555; /* Darker border for inputs */
+		    background-color: #333; /* Darker background for inputs */
+		    color: #fff; /* White text for inputs */
+		    border-radius: 4px;
+		}
+		
+		.form-container input[type="submit"] {
+		    background-color: #007bff; /* Bright blue for contrast */
+		    color: white;
+		    border: none;
+		    padding: 10px 20px;
+		    text-transform: uppercase;
+		    border-radius: 4px;
+		    cursor: pointer;
+		    transition: background 0.3s ease;
+		}
+		
+		.form-container input[type="submit"]:hover {
+		    background-color: #0056b3; /* Darker blue on hover */
+		}
+		
+		/* Responsive adjustments */
+		@media (max-width: 768px) {
+		    .dashboard-container {
+		        flex-direction: column;
+		        align-items: center;
+		    }
+		
+		    .sidebar, .main-content {
+		        width: 90%;
+		        max-width: 500px;
+		    }
+		}
+    </style>
+</head>
+<body>
+    <a href="/connect/login.html" class="floating-login-button">Login</a>
+    <div class="title-bar">RoomSense</div>
+    <div class="dashboard-container">
+        <aside class="sidebar">
+        <div class="menu-item">
+            <a href="home.html" class="menu-link">
+                <span class="icon">🏠</span><span class="label">Home</span>
+            </a>
+        </div>
+        <div class="menu-item">
+            <a href="courses.html" class="menu-link">
+                <span class="icon">📚</span><span class="label">Courses</span>
+            </a>
+        </div>
+        <div class="menu-item">
+            <a href="calendar.html" class="menu-link">
+                <span class="icon">📅</span><span class="label">Calendar</span>
+            </a>
+        </div>
+        <div class="menu-item">
+            <a href="/rooms" class="menu-link">
+                <span class="icon">📊</span><span class="label">Rooms</span>
+            </a>
+        </div>
+        <div class="menu-item">
+   			<a href="#" class="menu-link" onclick="goToUsersPage()">
+        		<span class="icon">⚙️</span><span class="label">Settings</span>
+   		    </a>
+		</div>
+		
+    </aside>
+        <div class="main-content">
+            <h1 style="text-align: center;">Add a new room to the database below:</h1>
+            <div class="form-container">
+	            <form action="/admin/addRoom" method="POST" th:action="@{/admin/addRoom}" th:object="${room}">
+	                <label for="room_id">Room ID:</label>
+	                <input type="number" id="room_id" name="room_id" required th:field="*{room_id}"><br><br>
+	                
+	                <label for="username">Username:</label>
+	                <input type="text" id="username" name="username" required th:field="*{username}"><br><br>
+	                
+	                <label for="temp">Temperature:</label>
+	                <input type="number" step="0.01" id="temp" name="temp" required th:field="*{temp}"><br><br>
+	                
+	                <label for="humidity">Humidity:</label>
+	                <input type="number" step="0.01" id="humidity" name="humidity" required th:field="*{humidity}"><br><br>
+	                
+	                <label for="occupancy">Occupancy:</label>
+	                <input type="number" step="0.01" id="occupancy" name="occupancy" required th:field="*{occupancy}"><br><br>
+	                
+	                <label for="size">Size:</label>
+	                <input type="number" step="0.01" id="size" name="size" required th:field="*{size}"><br><br>
+	                
+	                <label for="room_name">Room Name:</label>
+	                <input type="text" id="room_name" name="room_name" required th:field="*{roomName}"><br><br>
+	                
+	                <input type="submit" value="Submit">
+	            </form>
+             </div>
+        </div>
+    </div>
+    <footer class="footer">
+        <p>© 2024 DCU Smart Dashboard. All rights reserved.</p>
+        <p>Privacy Policy | Terms of Use | Accessibility</p>
+        <p>Contact Us: <a href="mailto:support@dcusmartdashboard.com">support@dcusmartdashboard.com</a></p>
+    </footer>
+</body>
+</html>

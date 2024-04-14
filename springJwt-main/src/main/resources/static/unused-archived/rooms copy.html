@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RoomSense - Grades</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+            .sidebar-dynamic {
+            background-color: #333; 
+            padding: 10px;
+            width: 200px; 
+            height: 100%; 
+            overflow-y: auto; 
+        }
+
+        .sidebar-dynamic .menu-link {
+            display: block;
+            padding: 8px;
+            color: white;
+            text-decoration: none;
+        }
+
+        .sidebar-dynamic .menu-link:hover {
+            background-color: #555;
+        } 
+    </style>
+    <script src="animations.js"></script>
+     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script> <!-- Including Plotly.js -->
+     <script>
+                document.addEventListener('DOMContentLoaded', function() {
+            const rooms = [
+                { room_id: 1, username: "brice13", temp: 22, humidity: 45, occupancy: 5, size: 150 },
+                { room_id: 2, username: "janeDoe", temp: 18, humidity: 55, occupancy: 15, size: 165 },
+                { room_id: 3, username: "johnSmith", temp: 19, humidity: 35, occupancy: 3, size: 120 }
+            ];
+
+            const sidebar = document.querySelector('.sidebar-dynamic');
+            rooms.forEach(room => {
+                const roomLink = document.createElement('a');
+                roomLink.classList.add('menu-link');
+                roomLink.textContent = `Room ${room.room_id}`;
+                roomLink.href = '#'; // Prevent default link behavior
+                roomLink.onclick = (e) => {
+                    e.preventDefault(); // Prevent the page from scrolling to the top
+                    displayRoomInfo(room);
+                };
+                sidebar.appendChild(roomLink);
+            });
+
+            function displayRoomInfo(room) {
+                const gaugeLayout = {
+                    width: 300, height: 300,
+                    margin: { t: 25, b: 25, l: 25, r: 25 },
+                    paper_bgcolor: "rgba(0,0,0,0.5)",
+                    font: { color: "white" }
+                };
+
+                // Temperature Gauge
+                Plotly.newPlot('tempGauge', [{
+                    domain: { x: [0, 1], y: [0, 1] },
+                    value: room.temp,
+                    title: { text: "Temperature (°C)" },
+                    type: "indicator",
+                    mode: "gauge+number",
+                    gauge: {
+                        axis: { range: [null, 50] },
+                        bar: { color: "red" }
+                    }
+                }], gaugeLayout);
+
+                // Humidity Gauge
+                Plotly.newPlot('humidityGauge', [{
+                    domain: { x: [0, 1], y: [0, 1] },
+                    value: room.humidity,
+                    title: { text: "Humidity (%)" },
+                    type: "indicator",
+                    mode: "gauge+number",
+                    gauge: {
+                        axis: { range: [null, 100] },
+                        bar: { color: "blue" }
+                    }
+                }], gaugeLayout);
+
+                // Occupancy Gauge
+                Plotly.newPlot('occupancyGauge', [{
+                    domain: { x: [0, 1], y: [0, 1] },
+                    value: room.occupancy,
+                    title: { text: "Occupancy" },
+                    type: "indicator",
+                    mode: "gauge+number",
+                    gauge: {
+                        axis: { range: [null, 50] },
+                        bar: { color: "green" }
+                    }
+                }], gaugeLayout);
+
+                // Size Gauge
+                Plotly.newPlot('sizeGauge', [{
+                    domain: { x: [0, 1], y: [0, 1] },
+                    value: room.size,
+                    title: { text: "Size (sqm)" },
+                    type: "indicator",
+                    mode: "gauge+number",
+                    gauge: {
+                        axis: { range: [null, 200] },
+                        bar: { color: "yellow" }
+                    }
+                }], gaugeLayout);
+            }
+        });
+    </script>
+</head>
+<body>
+<a href="login.html" class="floating-login-button">Login</a>
+<div class="title-bar">DCU Dashboard</div>
+<div class="dashboard-container">
+    <aside class="sidebar">
+        <div class="menu-item">
+            <a href="home.html" class="menu-link">
+                <span class="icon">🏠</span><span class="label">Home</span>
+            </a>
+        </div>
+        <div class="menu-item">
+            <a href="courses.html" class="menu-link">
+                <span class="icon">📚</span><span class="label">Courses</span>
+            </a>
+        </div>
+        <div class="menu-item">
+            <a href="calendar.html" class="menu-link">
+                <span class="icon">📅</span><span class="label">Calendar</span>
+            </a>
+        </div>
+        <div class="menu-item">
+            <a href="rooms.html" class="menu-link">
+                <span class="icon">📊</span><span class="label">Rooms (Here)</span>
+            </a>
+        </div>
+        <div class="menu-item">
+            <a href="settings.html" class="menu-link">
+                <span class="icon">⚙️</span><span class="label">Settings</span>
+            </a>
+        </div>
+		
+		<div class="menu-item">
+			<li class="dropdown">
+			<a href="javascript:void(0)" <span class="icon">⚙️</span><span class="label">   </span><span class="label"> Dynamic</span></a>
+			<div class="dropdown-content">
+			<a href="unused/Dynamic1.html">Dynamic Page 1</a>
+			<a href="unused/Dynamic2.html">Dynamic Page 2</a>
+			<a href="unused/Dynamic3.html">Dynamic Page 3</a>
+			<a href="unused/Dynamic4.html">Dynamic Page 4</a>
+			<a href="unused/Dynamic5.html">Dynamic Page 5</a>
+			</div>
+			</li>
+
+		</div>
+    </aside>
+    <!-- Dynamic sidebar for rooms. It gets populated with room buttons through the script. -->
+    <aside class="sidebar-dynamic">
+        <!-- Placeholder where dynamic content (room buttons) will be added -->
+    </aside>
+    <!-- Main content area where room details will be displayed upon selecting a room -->
+    <div class="main-content">
+        <div id="tempGauge" style="width:300px; height:300px; display: inline-block;"></div>
+        <div id="humidityGauge" style="width:300px; height:300px; display: inline-block;"></div>
+        <div id="occupancyGauge" style="width:300px; height:300px; display: inline-block;"></div>
+        <div id="sizeGauge" style="width:300px; height:300px; display: inline-block;"></div>
+    </div>
+</div>
+<footer class="footer">
+    <p>© 2024 DCU Smart Dashboard. All rights reserved.</p>
+    <p>Privacy Policy | Terms of Use | Accessibility</p>
+    <p>Contact Us: <a href="mailto:support@dcusmartdashboard.com">support@dcusmartdashboard.com</a></p>
+</footer>
+</body>
+</html>
