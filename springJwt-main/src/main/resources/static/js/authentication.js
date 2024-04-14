@@ -42,6 +42,7 @@ function goToUsersPage() {
     })
     .then(html => {
         document.body.innerHTML = html;
+        updateLoginButton();
     })
     .catch(error => {
         console.error('There was an error accessing the users page:', error);
@@ -69,9 +70,40 @@ function goToAddRoomPage() {
     })
     .then(html => {
         document.body.innerHTML = html;
+        updateLoginButton();
     })
     .catch(error => {
         console.error('There was an error accessing the add room page:', error);
+        alert(error.message);
+    });
+}
+
+function goToEditRoomPage(dataset) {
+    const token = localStorage.getItem('jwtToken');
+    if (!token) {
+        alert('You are not logged in');
+        return;
+    }
+
+    const roomId = dataset.roomId;
+
+    fetch(`/admin/editRoom/${roomId}`, {
+        headers: {
+            'Authorization': 'Bearer ' + token
+        }
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('You might not be authorized to view this page');
+        }
+        return response.text();
+    })
+    .then(html => {
+        document.body.innerHTML = html;
+        updateLoginButton();
+    })
+    .catch(error => {
+        console.error('There was an error accessing the edit room page:', error);
         alert(error.message);
     });
 }
