@@ -21,9 +21,9 @@ function updateLoginButton() {
     }
 }
 
-  
+
 function goToUsersPage() {
-    const token = localStorage.getItem('jwtToken'); // Again, ensure this matches the login script
+    const token = localStorage.getItem('jwtToken'); 
     if (!token) {
         alert('You are not logged in');
         return;
@@ -31,20 +31,47 @@ function goToUsersPage() {
 
     fetch('/admin/users', {
         headers: {
-            'Authorization': 'Bearer ' + token // Properly formatted authorization header
+            'Authorization': 'Bearer ' + token
         }
     })
     .then(response => {
         if (!response.ok) {
             throw new Error('You might not be authorized to view this page');
         }
-        return response.text(); // Assuming the server responds with HTML content
+        return response.text(); 
     })
     .then(html => {
-        document.body.innerHTML = html; // Warning: this will replace the entire body's content
+        document.body.innerHTML = html;
     })
     .catch(error => {
         console.error('There was an error accessing the users page:', error);
+        alert(error.message);
+    });
+}
+
+function goToAddRoomPage() {
+    const token = localStorage.getItem('jwtToken');
+    if (!token) {
+        alert('You are not logged in');
+        return;
+    }
+
+    fetch('/admin/addRoom.html', {
+        headers: {
+            'Authorization': 'Bearer ' + token
+        }
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('You might not be authorized to view this page');
+        }
+        return response.text();
+    })
+    .then(html => {
+        document.body.innerHTML = html;
+    })
+    .catch(error => {
+        console.error('There was an error accessing the add room page:', error);
         alert(error.message);
     });
 }

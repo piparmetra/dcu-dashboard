@@ -31,11 +31,36 @@
 
         .sidebar-dynamic .menu-link-room:hover {
             background-color: #555;
-        }
+            
+	        #addRoomBtn {
+	        display: none; 
+	        margin-bottom: 10px;
+	        cursor: pointer;
+	        padding: 8px;
+	        color: white;
+	        text-decoration: none;
+	        background-color: #333;
+	    }
+	
+	    #addRoomBtn:hover {
+	        background-color: #555;
+	    }
+	        }
     </style>
     
     <script>
+    	
+    
         document.addEventListener('DOMContentLoaded', function() {
+        	 const token = localStorage.getItem('jwtToken');
+             const addRoomBtn = document.getElementById('addRoomBtn');
+             if (token) {
+                 addRoomBtn.style.display = 'block';
+             } else {
+                 addRoomBtn.style.display = 'none';
+             }
+        	
+        	
             document.querySelectorAll('.menu-link-room').forEach(item => {
                 item.addEventListener('click', function(e) {
                     e.preventDefault();
@@ -137,6 +162,12 @@
     
     
         <aside class="sidebar-dynamic">
+        
+  	   <div id="addRoomBtn" onclick="goToAddRoomPage()">
+	 		  <span class="icon">➕</span> Add Rooms
+		</div>
+
+        
         <th:block th:each="room : ${rooms}">
             <div class="menu-item">
                 <a href="#" class="menu-link-room" th:text="${room.room_name}"

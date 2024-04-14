@@ -1,11 +1,70 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Error - <span th:text="${statusCode}"></span></title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Error - <span th:text="${statusCode}">500</span></title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: #121212;
+            color: #ffffff;
+        }
+
+        .title-bar {
+            font-family: sans-serif;
+            background: linear-gradient(to right, #0062cc, #00fbff);
+            color: #ffffff;
+            padding: 10px 20px;
+            font-size: 20px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+
+        .error-container {
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #222;
+            border-radius: 5px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+
+        h1 {
+            text-align: center;
+            color: #cc0000;
+        }
+
+        p {
+            font-size: 16px;
+            line-height: 1.5;
+            text-align: center;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #222;
+            color: white;
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
 </head>
 <body>
-    <h1>Error <span th:text="${statusCode}"></span></h1>
-    <p>An error occurred while processing your request.</p>
-    <p>Error code: <span th:text="${statusCode}"></span></p>
+    <div class="title-bar">RoomSense Error Page</div>
+    <div class="error-container">
+        <h1>Error <span th:text="${statusCode}">500</span></h1>
+        <p>An error occurred while processing your request.</p>
+        <p>Error code: <span th:text="${statusCode}">500</span></p>
+    </div>
+    <footer class="footer">
+        <p>© 2024 DCU Smart Dashboard. All rights reserved.</p>
+        <p>Privacy Policy | Terms of Use | Accessibility</p>
+        <p>Contact Us: <a href="mailto:support@dcusmartdashboard.com">support@dcusmartdashboard.com</a></p>
+    </footer>
 </body>
 </html>
