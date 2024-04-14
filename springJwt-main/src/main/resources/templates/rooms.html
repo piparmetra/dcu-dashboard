@@ -56,80 +56,92 @@
         }
     </style>
     
-    <script>
-    	
-    
-        document.addEventListener('DOMContentLoaded', function() {
-        	 const token = localStorage.getItem('jwtToken');
-             const addRoomBtn = document.getElementById('addRoomBtn');
-             if (token) {
-                 addRoomBtn.style.display = 'block';
-             } else {
-                 addRoomBtn.style.display = 'none';
-             }
-        	
-        	
-            document.querySelectorAll('.menu-link-room').forEach(item => {
-                item.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    const room = {
-                        room_id: this.dataset.roomId,
-                        room_name: this.textContent,
-                        temp: parseFloat(this.dataset.temp),
-                        humidity: parseFloat(this.dataset.humidity),
-                        occupancy: parseFloat(this.dataset.occupancy),
-                        size: parseFloat(this.dataset.size)
-                    };
-                    displayRoomInfo(room);
-                });
+<script>
+    // Function to execute when the DOM content is loaded
+    document.addEventListener('DOMContentLoaded', function() {
+        // Retrieve JWT token from local storage
+        const token = localStorage.getItem('jwtToken');
+        // Get the add room button element
+        const addRoomBtn = document.getElementById('addRoomBtn');
+        // Show or hide the add room button based on token existence
+        if (token) {
+            addRoomBtn.style.display = 'block';
+        } else {
+            addRoomBtn.style.display = 'none';
+        }
+
+        // Event listener for menu links related to rooms
+        document.querySelectorAll('.menu-link-room').forEach(item => {
+            item.addEventListener('click', function(e) {
+                e.preventDefault();
+                // Extract room information from dataset
+                const room = {
+                    room_id: this.dataset.roomId,
+                    room_name: this.textContent,
+                    temp: parseFloat(this.dataset.temp),
+                    humidity: parseFloat(this.dataset.humidity),
+                    occupancy: parseFloat(this.dataset.occupancy),
+                    size: parseFloat(this.dataset.size)
+                };
+                // Display room information
+                displayRoomInfo(room);
             });
         });
+    });
 
-        function displayRoomInfo(room) {
-            const gaugeLayout = {
-                width: 300, height: 300,
-                margin: { t: 25, b: 25, l: 25, r: 25 },
-                paper_bgcolor: "rgba(0,0,0,0.5)",
-                font: { color: "white" }
-            };
+    // Function to display room information using Plotly
+    function displayRoomInfo(room) {
+        // Layout for gauges
+        const gaugeLayout = {
+            width: 300,
+            height: 300,
+            margin: { t: 25, b: 25, l: 25, r: 25 },
+            paper_bgcolor: "rgba(0,0,0,0.5)",
+            font: { color: "white" }
+        };
 
-            Plotly.newPlot('tempGauge', [{
-                domain: { x: [0, 1], y: [0, 1] },
-                value: room.temp,
-                title: { text: "Temperature (°C)" },
-                type: "indicator",
-                mode: "gauge+number",
-                gauge: { axis: { range: [null, 50] }, bar: { color: "red" } }
-            }], gaugeLayout);
+        // Temperature gauge
+        Plotly.newPlot('tempGauge', [{
+            domain: { x: [0, 1], y: [0, 1] },
+            value: room.temp,
+            title: { text: "Temperature (°C)" },
+            type: "indicator",
+            mode: "gauge+number",
+            gauge: { axis: { range: [null, 50] }, bar: { color: "red" } }
+        }], gaugeLayout);
 
-            Plotly.newPlot('humidityGauge', [{
-                domain: { x: [0, 1], y: [0, 1] },
-                value: room.humidity,
-                title: { text: "Humidity (%)" },
-                type: "indicator",
-                mode: "gauge+number",
-                gauge: { axis: { range: [null, 100] }, bar: { color: "blue" } }
-            }], gaugeLayout);
+        // Humidity gauge
+        Plotly.newPlot('humidityGauge', [{
+            domain: { x: [0, 1], y: [0, 1] },
+            value: room.humidity,
+            title: { text: "Humidity (%)" },
+            type: "indicator",
+            mode: "gauge+number",
+            gauge: { axis: { range: [null, 100] }, bar: { color: "blue" } }
+        }], gaugeLayout);
 
-            Plotly.newPlot('occupancyGauge', [{
-                domain: { x: [0, 1], y: [0, 1] },
-                value: room.occupancy,
-                title: { text: "Occupancy" },
-                type: "indicator",
-                mode: "gauge+number",
-                gauge: { axis: { range: [null, 50] }, bar: { color: "green" } }
-            }], gaugeLayout);
+        // Occupancy gauge
+        Plotly.newPlot('occupancyGauge', [{
+            domain: { x: [0, 1], y: [0, 1] },
+            value: room.occupancy,
+            title: { text: "Occupancy" },
+            type: "indicator",
+            mode: "gauge+number",
+            gauge: { axis: { range: [null, 50] }, bar: { color: "green" } }
+        }], gaugeLayout);
 
-            Plotly.newPlot('sizeGauge', [{
-                domain: { x: [0, 1], y: [0, 1] },
-                value: room.size,
-                title: { text: "Size (sqm)" },
-                type: "indicator",
-                mode: "gauge+number",
-                gauge: { axis: { range: [null, 200] }, bar: { color: "yellow" } }
-            }], gaugeLayout);
-        }
-    </script>
+        // Size gauge
+        Plotly.newPlot('sizeGauge', [{
+            domain: { x: [0, 1], y: [0, 1] },
+            value: room.size,
+            title: { text: "Size (sqm)" },
+            type: "indicator",
+            mode: "gauge+number",
+            gauge: { axis: { range: [null, 200] }, bar: { color: "yellow" } }
+        }], gaugeLayout);
+    }
+</script>
+
     
     
     

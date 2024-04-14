@@ -1,126 +1,154 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
+    <!-- Set character encoding and viewport for responsiveness -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Title of the page -->
     <title>RoomSense - Add Room</title>
+    <!-- External stylesheet and scripts -->
     <link rel="stylesheet" href="css/style.css">
     <script src="/js/animations.js"></script>
     <script src="/js/authentication.js"></script>
+    <!-- Internal styling for form -->
     <style>
+        /* Form container styling */
         .form-container {
-		    background: #2c2c2c; /* dark grey background */
-		    color: #ffffff; /* white text color for readability */
-		    padding: 20px;
-		    border-radius: 8px;
-		    box-shadow: 0 4px 8px rgba(0,0,0,0.2); /* slightly stronger shadow for dark mode */
-		    width: 60%; /* wider form */
-		    margin: 20px auto;
-		}
-		
-		.form-container h1 {
-		    color: #ffffff; /* white text for headings */
-		}
-		
-		.form-container label {
-		    display: block;
-		    margin: 10px 0 5px;
-		    color: #cccccc; /* Llight grey color for labels */
-		}
-		
-		.form-container input[type="number"],
-		.form-container input[type="text"] {
-		    width: calc(100% - 22px);
-		    padding: 10px;
-		    margin-bottom: 10px;
-		    border: 1px solid #555; /* Darker border for inputs */
-		    background-color: #333; /* Darker background for inputs */
-		    color: #fff; /* White text for inputs */
-		    border-radius: 4px;
-		}
-		
-		.form-container input[type="submit"] {
-		    background-color: #007bff; /* Bright blue for contrast */
-		    color: white;
-		    border: none;
-		    padding: 10px 20px;
-		    text-transform: uppercase;
-		    border-radius: 4px;
-		    cursor: pointer;
-		    transition: background 0.3s ease;
-		}
-		
-		.form-container input[type="submit"]:hover {
-		    background-color: #0056b3; /* Darker blue on hover */
-		}
+            background: #2c2c2c; /* Dark grey background */
+            color: #ffffff; /* White text color for readability */
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2); /* Slightly stronger shadow for dark mode */
+            width: 60%; /* Wider form */
+            margin: 20px auto;
+        }
+        
+        /* Heading styling */
+        .form-container h1 {
+            color: #ffffff; /* White text for headings */
+            text-align: center;
+        }
+        
+        /* Label styling */
+        .form-container label {
+            display: block;
+            margin: 10px 0 5px;
+            color: #cccccc; /* Light grey color for labels */
+        }
+        
+        /* Input field styling */
+        .form-container input[type="number"],
+        .form-container input[type="text"] {
+            width: calc(100% - 22px);
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #555; /* Darker border for inputs */
+            background-color: #333; /* Darker background for inputs */
+            color: #fff; /* White text for inputs */
+            border-radius: 4px;
+        }
+        
+        /* Submit button styling */
+        .form-container input[type="submit"] {
+            background-color: #007bff; /* Bright blue for contrast */
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            text-transform: uppercase;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+        
+        /* Hover effect for submit button */
+        .form-container input[type="submit"]:hover {
+            background-color: #0056b3; /* Darker blue on hover */
+        }
     </style>
 </head>
 <body>
+    <!-- Login button -->
     <a href="/connect/login.html" class="floating-login-button">Login</a>
+    <!-- Title bar -->
     <div class="title-bar">RoomSense</div>
     <div class="dashboard-container">
+        <!-- Sidebar menu -->
         <aside class="sidebar">
-        <div class="menu-item">
-            <a href="home.html" class="menu-link">
-                <span class="icon">🏠</span><span class="label">Home</span>
-            </a>
+            <!-- Home menu item -->
+            <div class="menu-item">
+                <a href="home.html" class="menu-link">
+                    <span class="icon">🏠</span><span class="label">Home</span>
+                </a>
+            </div>
+            <!-- Courses menu item -->
+            <div class="menu-item">
+                <a href="courses.html" class="menu-link">
+                    <span class="icon">📚</span><span class="label">Courses</span>
+                </a>
+            </div>
+            <!-- Calendar menu item -->
+            <div class="menu-item">
+                <a href="calendar.html" class="menu-link">
+                    <span class="icon">📅</span><span class="label">Calendar</span>
+                </a>
+            </div>
+            <!-- Rooms menu item -->
+            <div class="menu-item">
+                <a href="/rooms" class="menu-link">
+                    <span class="icon">📊</span><span class="label">Rooms</span>
+                </a>
+            </div>
+            <!-- Settings menu item -->
+            <div class="menu-item">
+                <a href="#" class="menu-link" onclick="goToUsersPage()">
+                    <span class="icon">⚙️</span><span class="label">Settings</span>
+                </a>
+            </div>
+        </aside>
+        <!-- Main content -->
+        <div class="main-content">
+            <!-- Heading with Thymeleaf expression for room name -->
+            <h1 th:text="|Edit the Room: ${room.room_name}|"></h1>
+            <!-- Form container -->
+            <div class="form-container">
+                <!-- Form for editing room details -->
+                <form th:action="@{'/admin/editRoom/' + ${room.room_id}}" th:object="${room}" method="post">
+                    <!-- Username input -->
+                    <label for="username">Username:</label>
+                    <input type="text" id="username" th:field="*{username}" required />
+                    <br />
+                    <!-- Temperature input -->
+                    <label for="temp">Temperature:</label>
+                    <input type="number" step="0.1" id="temp" th:field="*{temp}" required />
+                    <br />
+                    <!-- Humidity input -->
+                    <label for="humidity">Humidity:</label>
+                    <input type="number" step="0.1" id="humidity" th:field="*{humidity}" required />
+                    <br />
+                    <!-- Occupancy input -->
+                    <label for="occupancy">Occupancy:</label>
+                    <input type="number" step="0.1" id="occupancy" th:field="*{occupancy}" required />
+                    <br />
+                    <!-- Size input -->
+                    <label for="size">Size:</label>
+                    <input type="number" step="0.1" id="size" th:field="*{size}" required />
+                    <br />
+                    <!-- Room name input -->
+                    <label for="roomName">Room Name:</label>
+                    <input type="text" id="roomName" th:field="*{room_name}" required />
+                    <br />
+                    <!-- Submit button -->
+                    <button type="submit">Save Changes</button>
+                </form>
+            </div>
         </div>
-        <div class="menu-item">
-            <a href="courses.html" class="menu-link">
-                <span class="icon">📚</span><span class="label">Courses</span>
-            </a>
-        </div>
-        <div class="menu-item">
-            <a href="calendar.html" class="menu-link">
-                <span class="icon">📅</span><span class="label">Calendar</span>
-            </a>
-        </div>
-        <div class="menu-item">
-            <a href="/rooms" class="menu-link">
-                <span class="icon">📊</span><span class="label">Rooms</span>
-            </a>
-        </div>
-        <div class="menu-item">
-   			<a href="#" class="menu-link" onclick="goToUsersPage()">
-        		<span class="icon">⚙️</span><span class="label">Settings</span>
-   		    </a>
-		</div>
-    </aside>
-    <div class="main-content">
-        <h1 style="text-align: center;" th:text="|Edit the Room: ${room.room_name}|"></h1>
-        <div class="form-container">
-            <form th:action="@{'/admin/editRoom/' + ${room.room_id}}" th:object="${room}" method="post">
-                <label for="username">Username:</label>
-                <input type="text" id="username" th:field="*{username}" required />
-                <br />
-
-                <label for="temp">Temperature:</label>
-                <input type="number" step="0.1" id="temp" th:field="*{temp}" required />
-                <br />
-
-                <label for="humidity">Humidity:</label>
-                <input type="number" step="0.1" id="humidity" th:field="*{humidity}" required />
-                <br />
-
-                <label for="occupancy">Occupancy:</label>
-                <input type="number" step="0.1" id="occupancy" th:field="*{occupancy}" required />
-                <br />
-
-                <label for="size">Size:</label>
-                <input type="number" step="0.1" id="size" th:field="*{size}" required />
-                <br />
-
-                <label for="roomName">Room Name:</label>
-                <input type="text" id="roomName" th:field="*{room_name}" required />
-                <br />
-
-                <button type="submit">Save Changes</button>
-            </form>
-        </div>
-        <footer class="footer">
-            <p>© 2024 DCU Smart Dashboard. All rights reserved.</p>
-            <p>Privacy Policy | Terms of Use | Accessibility</p>
-            <p>Contact Us: <a href="mailto:support@dcusmartdashboard.com">support@dcusmartdashboard.com</a></p>
-        </footer>
-    </body>
+    </div>
+    <!-- Footer -->
+    <footer class="footer">
+        <!-- Copyright and contact information -->
+        <p>© 2024 DCU Smart Dashboard. All rights reserved.</p>
+        <p>Privacy Policy | Terms of Use | Accessibility</p>
+        <p>Contact Us: <a href="mailto:support@dcusmartdashboard.com">support@dcusmartdashboard.com</a></p>
+    </footer>
+</body>
 </html>

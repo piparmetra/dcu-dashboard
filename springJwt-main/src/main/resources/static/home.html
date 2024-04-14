@@ -1,76 +1,80 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- Set character encoding and viewport for responsiveness -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DCU Smart Dashboard - Home</title>
-    <link rel="stylesheet" href="style.css">
-    <script src="animations.js"></script>
-
+    <!-- Title of the page -->
+    <title>RoomSense - Home</title>
+    <!-- Link to external CSS file -->
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- Link to external JavaScript files -->
+    <script src="/js/animations.js"></script>
+    <script src="/js/authentication.js"></script>
 </head>
 <body>
-<a href="login.html" class="floating-login-button">Login</a>
-<div class="title-bar">DCU Dashboard</div>
-<div class="dashboard-container">
-    <aside class="sidebar">
-        <div class="menu-item">
-            <a href="home.html" class="menu-link">
-                <span class="icon">🏠</span><span class="label">Home This Page</span>
-            </a>
+    <!-- Floating login button -->
+    <a href="/connect/login.html" class="floating-login-button">Login</a>
+    <!-- Title bar -->
+    <div class="title-bar">RoomSense</div>
+    <div class="dashboard-container">
+        <!-- Sidebar navigation -->
+        <aside class="sidebar">
+            <!-- Home link -->
+            <div class="menu-item">
+                <a href="home.html" class="menu-link">
+                    <span class="icon">🏠</span><span class="label">Home (Here)</span>
+                </a>
+            </div>
+            <!-- Courses link -->
+            <div class="menu-item">
+                <a href="courses.html" class="menu-link">
+                    <span class="icon">📚</span><span class="label">Courses</span>
+                </a>
+            </div>
+            <!-- Calendar link -->
+            <div class="menu-item">
+                <a href="calendar.html" class="menu-link">
+                    <span class="icon">📅</span><span class="label">Calendar</span>
+                </a>
+            </div>
+            <!-- Rooms link -->
+            <div class="menu-item">
+                <a href="/rooms" class="menu-link">
+                    <span class="icon">📊</span><span class="label">Rooms</span>
+                </a>
+            </div>
+            <!-- Settings link -->
+            <div class="menu-item">
+                <a href="#" class="menu-link" onclick="goToUsersPage()">
+                    <span class="icon">⚙️</span><span class="label">Settings</span>
+                </a>
+            </div>
+        </aside>
+        <!-- Main content -->
+        <div class="main-content">
+            <!-- First main section -->
+            <div class="main-section">
+                <!-- Welcome message -->
+                <h1>Welcome to RoomSense - a smart DCU dashboard</h1>
+                <!-- Description -->
+                <p>Explore the smart way to manage your university experience. From courses to calendars, grades, and more, the DCU Dashboard is your all-in-one platform for academic management and success.</p>
+                <!-- Image of DCU campus -->
+                <img src="/images/campus.jpg" alt="DCU Campus" style="width:100%; max-width:600px; height:auto; margin:20px 0;">
+            </div>
+            <!-- Second main section with button -->
+            <div class="main-section">
+                <!-- Button to view rooms -->
+                <button class="button" onclick="window.location.href='/rooms';">View rooms</button>
+            </div>
         </div>
-        <div class="menu-item">
-            <a href="courses.html" class="menu-link">
-                <span class="icon">📚</span><span class="label">Courses</span>
-            </a>
-        </div>
-        <div class="menu-item">
-            <a href="calendar.html" class="menu-link">
-                <span class="icon">📅</span><span class="label">Calendar</span>
-            </a>
-        </div>
-        <div class="menu-item">
-            <a href="grades.html" class="menu-link">
-                <span class="icon">📊</span><span class="label">Grades</span>
-            </a>
-        </div>
-        <div class="menu-item">
-            <a href="settings.html" class="menu-link">
-                <span class="icon">⚙️</span><span class="label">Settings</span>
-            </a>
-        </div>
-		
-		<div class="menu-item">
-			<li class="dropdown">
-			<a href="javascript:void(0)" <span class="icon">⚙️</span><span class="label">   </span><span class="label"> Dynamic</span></a>
-			<div class="dropdown-content">
-			<a href="Dynamic1.html">Dynamic Page 1</a>
-			<a href="Dynamic2.html">Dynamic Page 2</a>
-			<a href="Dynamic3.html">Dynamic Page 3</a>
-			<a href="Dynamic4.html">Dynamic Page 4</a>
-			<a href="Dynamic5.html">Dynamic Page 5</a>
-			</div>
-			</li>
-
-		</div>
-		
-		
-    </aside>
-    
-    <div class="main-content">
-	
-        <div class="container">
-		<p style="color:White;">Click the link to go to the Next page. <a href="courses.html">Next Page</a></p>
-
-		<p style="color:White;">Click the link to go to the Home page. <a href="home.html">Home Page</a></p>
-	<!-- The above is the links for the next page of the website and a link back to the Home page (this page). 
-	The instruction was changed to white using css to avoid confusing it with the link.-->
-</div>
     </div>
-</div>
-<footer class="footer">
-    <p>© 2024 DCU Smart Dashboard. All rights reserved.</p>
-    <p>Privacy Policy | Terms of Use | Accessibility</p>
-    <p>Contact Us: <a href="mailto:support@dcusmartdashboard.com">support@dcusmartdashboard.com</a></p>
-</footer>
+    <!-- Footer -->
+    <footer class="footer">
+        <!-- Copyright and contact information -->
+        <p>© 2024 DCU Smart Dashboard. All rights reserved.</p>
+        <p>Privacy Policy | Terms of Use | Accessibility</p>
+        <p>Contact Us: <a href="mailto:support@dcusmartdashboard.com">support@dcusmartdashboard.com</a></p>
+    </footer>
 </body>
 </html>

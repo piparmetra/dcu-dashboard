@@ -1,55 +1,73 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- Set character encoding and viewport for responsiveness -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Title of the page -->
     <title>RoomSense - Courses</title>
+    <!-- Link to external CSS file -->
     <link rel="stylesheet" href="/css/style.css">
+    <!-- Links to external JavaScript files -->
     <script src="/js/animations.js"></script>
     <script src="/js/authentication.js"></script>
-
 </head>
 <body>
-<a href="/connect/login.html" class="floating-login-button">Login</a>
-<div class="title-bar">RoomSense</div>
-<div class="dashboard-container">
-    <aside class="sidebar">
-        <div class="menu-item">
-            <a href="home.html" class="menu-link">
-                <span class="icon">🏠</span><span class="label">Home (Here)</span>
-            </a>
-        </div>
-        <div class="menu-item">
-            <a href="courses.html" class="menu-link">
-                <span class="icon">📚</span><span class="label">Courses</span>
-            </a>
-        </div>
-        <div class="menu-item">
-            <a href="calendar.html" class="menu-link">
-                <span class="icon">📅</span><span class="label">Calendar</span>
-            </a>
-        </div>
-        <div class="menu-item">
-            <a href="/rooms" class="menu-link">
-                <span class="icon">📊</span><span class="label">Rooms</span>
-            </a>
-        </div>
-        <div class="menu-item">
-   			<a href="#" class="menu-link" onclick="goToUsersPage()">
-        		<span class="icon">⚙️</span><span class="label">Settings</span>
-   		    </a>
-		</div>
-		
-    </aside>
-
-    <div class="main-content">
-        <h1>Courses Available</h1>
-        <div class="courses-list">
-            <div class="course">
-                <h2>Digital and Analogue Electronics</h2>
-                <p>Room: B101</p>
-                <p>Description: Explore the fundamentals of electronic circuits and their applications in both digital and analogue systems.</p>
+    <!-- Floating login button -->
+    <a href="/connect/login.html" class="floating-login-button">Login</a>
+    <!-- Title bar -->
+    <div class="title-bar">RoomSense</div>
+    <div class="dashboard-container">
+        <!-- Sidebar navigation -->
+        <aside class="sidebar">
+            <!-- Home link -->
+            <div class="menu-item">
+                <a href="home.html" class="menu-link">
+                    <span class="icon">🏠</span><span class="label">Home (Here)</span>
+                </a>
             </div>
+            <!-- Courses link -->
+            <div class="menu-item">
+                <a href="courses.html" class="menu-link">
+                    <span class="icon">📚</span><span class="label">Courses</span>
+                </a>
+            </div>
+            <!-- Calendar link -->
+            <div class="menu-item">
+                <a href="calendar.html" class="menu-link">
+                    <span class="icon">📅</span><span class="label">Calendar</span>
+                </a>
+            </div>
+            <!-- Rooms link -->
+            <div class="menu-item">
+                <a href="/rooms" class="menu-link">
+                    <span class="icon">📊</span><span class="label">Rooms</span>
+                </a>
+            </div>
+            <!-- Settings link -->
+            <div class="menu-item">
+                <a href="#" class="menu-link" onclick="goToUsersPage()">
+                    <span class="icon">⚙️</span><span class="label">Settings</span>
+                </a>
+            </div>
+        </aside>
+
+        <!-- Main content -->
+        <div class="main-content">
+            <!-- Title for the courses section -->
+            <h1>Courses Available</h1>
+            <!-- Container for the list of courses -->
+            <div class="courses-list">
+                <!-- Course item -->
+                <div class="course">
+                    <!-- Course title -->
+                    <h2>Digital and Analogue Electronics</h2>
+                    <!-- Room information -->
+                    <p>Room: B101</p>
+                    <!-- Description of the course -->
+                    <p>Description: Explore the fundamentals of electronic circuits and their applications in both digital and analogue systems.</p>
+                </div>
+                <!-- Repeat the same structure for other courses -->
             <div class="course">
                 <h2>Embedded Systems</h2>
                 <p>Room: SG12</p>
@@ -94,15 +112,14 @@
     </div>
 	
 </div>
-        
+       
 
-    </div>
-</div>
-
-<footer class="footer">
-    <p>© 2024 DCU Smart Dashboard. All rights reserved.</p>
-    <p>Privacy Policy | Terms of Use | Accessibility</p>
-    <p>Contact Us: <a href="mailto:support@dcusmartdashboard.com">support@dcusmartdashboard.com</a></p>
-</footer>
+    <!-- Footer -->
+    <footer class="footer">
+        <!-- Copyright and contact information -->
+        <p>© 2024 DCU Smart Dashboard. All rights reserved.</p>
+        <p>Privacy Policy | Terms of Use | Accessibility</p>
+        <p>Contact Us: <a href="mailto:support@dcusmartdashboard.com">support@dcusmartdashboard.com</a></p>
+    </footer>
 </body>
 </html>

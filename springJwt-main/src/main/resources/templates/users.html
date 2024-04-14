@@ -4,91 +4,101 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>RoomSense - User Settings</title>
+    <!-- Link to the CSS stylesheet -->
     <link rel="stylesheet" href="css/style.css">
+    <!-- Scripts for animations and authentication -->
     <script src="/js/animations.js"></script>
     <script src="/js/authentication.js"></script>
-
 </head>
 <body>
+<!-- Floating login button -->
 <a href="/connect/login.html" class="floating-login-button">Login</a>
+<!-- Title bar -->
 <div class="title-bar">RoomSense</div>
+<!-- Dashboard container -->
 <div class="dashboard-container">
-     <aside class="sidebar">
-	         <div class="menu-item">
-	        <a href="home.html" class="menu-link">
-	            <span class="icon">🏠</span><span class="label">Home (Here)</span>
-	        </a>
-	    </div>
-	    <div class="menu-item">
-	        <a href="courses.html" class="menu-link">
-	            <span class="icon">📚</span><span class="label">Courses</span>
-	        </a>
-	    </div>
-	    <div class="menu-item">
-	        <a href="calendar.html" class="menu-link">
-	            <span class="icon">📅</span><span class="label">Calendar</span>
-	        </a>
-	    </div>
+    <!-- Sidebar -->
+    <aside class="sidebar">
+        <!-- Menu items -->
+        <div class="menu-item">
+            <a href="home.html" class="menu-link">
+                <span class="icon">🏠</span><span class="label">Home (Here)</span>
+            </a>
+        </div>
+        <div class="menu-item">
+            <a href="courses.html" class="menu-link">
+                <span class="icon">📚</span><span class="label">Courses</span>
+            </a>
+        </div>
+        <div class="menu-item">
+            <a href="calendar.html" class="menu-link">
+                <span class="icon">📅</span><span class="label">Calendar</span>
+            </a>
+        </div>
         <div class="menu-item">
             <a href="/rooms" class="menu-link">
                 <span class="icon">📊</span><span class="label">Rooms</span>
             </a>
         </div>
         <div class="menu-item">
-   			<a href="#" class="menu-link" onclick="goToUsersPage()">
-        		<span class="icon">⚙️</span><span class="label">Settings</span>
-   		    </a>
-		</div>
-		
+            <a href="#" class="menu-link" onclick="goToUsersPage()">
+                <span class="icon">⚙️</span><span class="label">Settings</span>
+            </a>
+        </div>
     </aside>
-
+    <!-- Main content -->
     <div class="main-content">
-        <h1>Management of Users Databaset</h1>
-
-<table border="1">
-    <thead>
-        <tr>
-            <th>Username</th>
-            <th>First Name</th>
-            <th>Last Name</th>
-            <th>Email</th>
-            <th>Role</th>
-            <th>Edit</th>
-            <th>Delete</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr th:each="user : ${users}">
-            <form th:action="@{'/admin/editUser/' + ${user.id}}" method="post">
-                <td><input type="text" th:value="${user.username}" readonly name="username"/></td>
-                <td><input type="text" th:value="${user.firstName}" name="firstName"/></td>
-                <td><input type="text" th:value="${user.lastName}" name="lastName"/></td>
-                <td><input type="email" th:value="${user.email}" name="email"/></td>
-                <td>
-                    <select name="role">
-                        <option th:each="role : ${T(com.GroupE.Assignment4.model.Role).values()}"
-                                th:value="${role}"
-                                th:text="${role}"
-                                th:selected="${user.role == role}">
-                        </option>
-                    </select>
-                </td>
-                <td><button type="submit">Save</button></td>
-            </form>
-            <td>
-                <form th:action="@{'/admin/deleteUser/' + ${user.id}}" method="post">
-                    <button type="submit">Delete</button>
-                </form>
-            </td>
-        </tr>
-    </tbody>
-    
-</table>
+        <!-- Heading -->
+        <h1>Management of Users Database</h1>
+        <!-- Table for displaying user information -->
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>Username</th>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Email</th>
+                    <th>Role</th>
+                    <th>Edit</th>
+                    <th>Delete</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Iterating over user data to populate the table -->
+                <tr th:each="user : ${users}">
+                    <!-- Form for editing user details -->
+                    <form th:action="@{'/admin/editUser/' + ${user.id}}" method="post">
+                        <td><input type="text" th:value="${user.username}" readonly name="username"/></td>
+                        <td><input type="text" th:value="${user.firstName}" name="firstName"/></td>
+                        <td><input type="text" th:value="${user.lastName}" name="lastName"/></td>
+                        <td><input type="email" th:value="${user.email}" name="email"/></td>
+                        <td>
+                            <!-- Dropdown for selecting user role -->
+                            <select name="role">
+                                <option th:each="role : ${T(com.GroupE.Assignment4.model.Role).values()}"
+                                        th:value="${role}"
+                                        th:text="${role}"
+                                        th:selected="${user.role == role}">
+                                </option>
+                            </select>
+                        </td>
+                        <!-- Button to submit changes -->
+                        <td><button type="submit">Save</button></td>
+                    </form>
+                    <!-- Form for deleting user -->
+                    <td>
+                        <form th:action="@{'/admin/deleteUser/' + ${user.id}}" method="post">
+                            <button type="submit">Delete</button>
+                        </form>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
     </div>
-
-
 </div>
+<!-- Footer -->
 <footer class="footer">
+    <!-- Copyright and contact information -->
     <p>© 2024 DCU Smart Dashboard. All rights reserved.</p>
     <p>Privacy Policy | Terms of Use | Accessibility</p>
     <p>Contact Us: <a href="mailto:support@dcusmartdashboard.com">support@dcusmartdashboard.com</a></p>

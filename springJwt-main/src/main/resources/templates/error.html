@@ -1,10 +1,14 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
+    <!-- Set character encoding and viewport for responsiveness -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Title of the page with Thymeleaf expression for dynamic status code -->
     <title>Error - <span th:text="${statusCode}">500</span></title>
+    <!-- Internal styling for the error page -->
     <style>
+        /* Resetting default styles */
         body, html {
             margin: 0;
             padding: 0;
@@ -13,6 +17,7 @@
             color: #ffffff;
         }
 
+        /* Title bar styling */
         .title-bar {
             font-family: sans-serif;
             background: linear-gradient(to right, #0062cc, #00fbff);
@@ -23,6 +28,7 @@
             text-align: center;
         }
 
+        /* Error container styling */
         .error-container {
             max-width: 600px;
             margin: 50px auto;
@@ -32,17 +38,20 @@
             box-shadow: 0 4px 8px rgba(0,0,0,0.2);
         }
 
+        /* Heading styling */
         h1 {
             text-align: center;
             color: #cc0000;
         }
 
+        /* Paragraph styling */
         p {
             font-size: 16px;
             line-height: 1.5;
             text-align: center;
         }
 
+        /* Footer styling */
         .footer {
             text-align: center;
             padding: 20px;
@@ -55,14 +64,22 @@
     </style>
 </head>
 <body>
+    <!-- Title bar -->
     <div class="title-bar">RoomSense Error Page</div>
+    <!-- Error container -->
     <div class="error-container">
+        <!-- Error heading with dynamic status code -->
         <h1>Error <span th:text="${statusCode}">500</span></h1>
+        <!-- Error message -->
         <p>An error occurred while processing your request.</p>
+        <!-- Error code -->
         <p>Error code: <span th:text="${statusCode}">500</span></p>
+        <!-- Link to return to the home page -->
         <p><a href="/home.html">Back to Home Page</a></p>
     </div>
+    <!-- Footer -->
     <footer class="footer">
+        <!-- Copyright and contact information -->
         <p>© 2024 DCU Smart Dashboard. All rights reserved.</p>
         <p>Privacy Policy | Terms of Use | Accessibility</p>
         <p>Contact Us: <a href="mailto:support@dcusmartdashboard.com">support@dcusmartdashboard.com</a></p>
